@@ -1,0 +1,66 @@
+{
+  "cli": {
+    "description": "CLI para facilitar o uso do Git com linguagem natural",
+    "version": "1.0.0"
+  },
+  "commands": {
+    "commit": {
+      "description": "Cria um commit seguindo as convenções do Conventional Commits",
+      "options": {
+        "message": "Mensagem do commit (opcional)",
+        "type": "Tipo de commit semântico",
+        "scope": "Escopo da mudança (opcional)",
+        "breaking": "Indica uma mudança que quebra compatibilidade",
+        "description": "Descrição detalhada do commit (opcional)",
+        "fullMessage": "Mensagem completa do commit (substitui outras opções)",
+        "nonInteractive": "Usar modo não interativo (pular prompts)"
+      },
+      "prompts": {
+        "selectType": "Selecione o tipo de mudança:",
+        "enterScope": "Qual é o escopo desta mudança (opcional):",
+        "isBreaking": "Esta mudança quebra a compatibilidade com versões anteriores?",
+        "shortDescription": "Escreva uma descrição curta:",
+        "longDescription": "Forneça uma descrição mais longa (opcional):",
+        "descriptionRequired": "A descrição é obrigatória"
+      },
+      "messages": {
+        "generatingCommit": "📝 Gerando commit com mensagem: \"{0}\"",
+        "commitSuccess": "✅ Commit criado com sucesso.",
+        "commitError": "❌ Erro ao criar commit:",
+        "invalidType": "❌ Tipo de commit inválido: {0}",
+        "validTypes": "Tipos de commit válidos:",
+        "messageRequired": "❌ Você deve fornecer uma mensagem para o commit",
+        "breakingChange": "BREAKING CHANGE: Esta mudança quebra a compatibilidade com versões anteriores."
+      }
+    },
+    "initProject": {
+      "description": "Inicializa um repositório Git e cria um primeiro commit vazio",
+      "messages": {
+        "initializingRepo": "📂 Inicializando repositório Git...",
+        "repoInitialized": "✅ Repositório Git inicializado.",
+        "creatingCommit": "📝 Criando primeiro commit vazio...",
+        "projectInitialized": "✅ Projeto Git inicializado com sucesso.",
+        "initError": "❌ Erro ao inicializar o projeto:"
+      }
+    }
+  },
+  "commitTypes": {
+    "feat": "Novas funcionalidades",
+    "fix": "Correções de bugs",
+    "docs": "Mudanças na documentação",
+    "style": "Mudanças que não afetam o significado do código (espaços em branco, formatação, etc.)",
+    "refactor": "Mudanças de código que não corrigem bugs nem adicionam funcionalidades",
+    "perf": "Melhorias de desempenho",
+    "test": "Adicionando ou corrigindo testes",
+    "build": "Mudanças que afetam o sistema de compilação ou dependências externas",
+    "ci": "Mudanças na configuração e scripts de CI",
+    "chore": "Outras mudanças que não modificam arquivos src ou test",
+    "revert": "Reverte um commit anterior"
+  },
+  "config": {
+    "saved": "✅ Configuração salva com sucesso.",
+    "error": "❌ Erro ao salvar configuração:",
+    "currentLanguage": "Idioma atual: {0}",
+    "selectLanguage": "Selecione um idioma:"
+  }
+} 

@@ -1,0 +1,66 @@
+{
+  "cli": {
+    "description": "CLI para facilitar el uso de Git con lenguaje natural",
+    "version": "1.0.0"
+  },
+  "commands": {
+    "commit": {
+      "description": "Crea un commit siguiendo las convenciones de Conventional Commits",
+      "options": {
+        "message": "Mensaje del commit (opcional)",
+        "type": "Tipo de commit semántico",
+        "scope": "Alcance del cambio (opcional)",
+        "breaking": "Indica un cambio que rompe compatibilidad",
+        "description": "Descripción detallada del commit (opcional)",
+        "fullMessage": "Mensaje completo del commit (anula otras opciones)",
+        "nonInteractive": "Usar modo no interactivo (omitir prompts)"
+      },
+      "prompts": {
+        "selectType": "Selecciona el tipo de cambio:",
+        "enterScope": "¿Cuál es el alcance de este cambio (opcional):",
+        "isBreaking": "¿Este cambio rompe la compatibilidad hacia atrás?",
+        "shortDescription": "Escribe una descripción corta:",
+        "longDescription": "Proporciona una descripción más larga (opcional):",
+        "descriptionRequired": "La descripción es obligatoria"
+      },
+      "messages": {
+        "generatingCommit": "📝 Generando commit con mensaje: \"{0}\"",
+        "commitSuccess": "✅ Commit creado exitosamente.",
+        "commitError": "❌ Error al crear el commit:",
+        "invalidType": "❌ Tipo de commit inválido: {0}",
+        "validTypes": "Tipos de commit válidos:",
+        "messageRequired": "❌ Debes proporcionar un mensaje para el commit",
+        "breakingChange": "BREAKING CHANGE: Este cambio rompe la compatibilidad con versiones anteriores."
+      }
+    },
+    "initProject": {
+      "description": "Inicializa un repositorio Git y crea un primer commit vacío",
+      "messages": {
+        "initializingRepo": "📂 Inicializando repositorio Git...",
+        "repoInitialized": "✅ Repositorio Git inicializado.",
+        "creatingCommit": "📝 Creando primer commit vacío...",
+        "projectInitialized": "✅ Proyecto Git inicializado con éxito.",
+        "initError": "❌ Error al inicializar el proyecto:"
+      }
+    }
+  },
+  "commitTypes": {
+    "feat": "Nuevas características",
+    "fix": "Correcciones de errores",
+    "docs": "Cambios en la documentación",
+    "style": "Cambios que no afectan el significado del código (espacios en blanco, formato, etc.)",
+    "refactor": "Cambios de código que no corrigen errores ni añaden características",
+    "perf": "Mejoras de rendimiento",
+    "test": "Añadir o corregir pruebas",
+    "build": "Cambios que afectan al sistema de compilación o dependencias externas",
+    "ci": "Cambios en la configuración y scripts de CI",
+    "chore": "Otros cambios que no modifican archivos src o test",
+    "revert": "Revierte un commit anterior"
+  },
+  "config": {
+    "saved": "✅ Configuración guardada correctamente.",
+    "error": "❌ Error al guardar la configuración:",
+    "currentLanguage": "Idioma actual: {0}",
+    "selectLanguage": "Selecciona un idioma:"
+  }
+} 

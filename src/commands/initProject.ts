@@ -1,22 +1,23 @@
 import simpleGit from "simple-git";
 import { Command } from "commander";
+import { i18n } from "../i18n";
 
 const git = simpleGit();
 
 export const initProjectCommand = new Command("init-project")
-  .description("Inicializa un repositorio Git y crea un primer commit vacío")
+  .description(i18n.t("commands.initProject.description"))
   .action(async () => {
     try {
-      console.log("📂 Inicializando repositorio Git...");
+      console.log(i18n.t("commands.initProject.messages.initializingRepo"));
       await git.init();
 
-      console.log("✅ Repositorio Git inicializado.");
+      console.log(i18n.t("commands.initProject.messages.repoInitialized"));
 
-      console.log("📝 Creando primer commit vacío...");
+      console.log(i18n.t("commands.initProject.messages.creatingCommit"));
       await git.commit("(chore): initial commit", { "--allow-empty": null });
 
-      console.log("✅ Proyecto Git inicializado con éxito.");
+      console.log(i18n.t("commands.initProject.messages.projectInitialized"));
     } catch (error) {
-      console.error("❌ Error al inicializar el proyecto:", error);
+      console.error(i18n.t("commands.initProject.messages.initError"), error);
     }
   });

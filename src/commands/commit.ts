@@ -1,33 +1,22 @@
 import simpleGit from "simple-git";
 import { Command } from "commander";
 import inquirer from "inquirer";
+import { i18n } from "../i18n";
 
 const git = simpleGit();
 
-// Semantic commit types according to Conventional Commits
-const COMMIT_TYPES = {
-  feat: "New features",
-  fix: "Bug fixes",
-  docs: "Documentation changes",
-  style: "Changes that do not affect the meaning of the code (whitespace, formatting, etc.)",
-  refactor: "Code changes that neither fix bugs nor add features",
-  perf: "Performance improvements",
-  test: "Adding or correcting tests",
-  build: "Changes that affect the build system or external dependencies",
-  ci: "Changes to CI configuration and scripts",
-  chore: "Other changes that don't modify src or test files",
-  revert: "Reverts a previous commit",
-};
+// Obtener los tipos de commit desde las traducciones
+const COMMIT_TYPES = i18n.getTranslationObject("commitTypes");
 
 export const commitCommand = new Command("commit")
-  .argument("[message]", "Commit message (optional)")
-  .option("-t, --type <type>", "Semantic commit type", "feat")
-  .option("-s, --scope <scope>", "Scope of the change (optional)")
-  .option("-b, --breaking", "Indicates a breaking change", false)
-  .option("-d, --description <description>", "Detailed description of the commit (optional)")
-  .option("-m, --full-message <message>", "Complete commit message (overrides other options)")
-  .option("-n, --non-interactive", "Use non-interactive mode (skip prompts)")
-  .description("Creates a commit following Conventional Commits conventions")
+  .argument("[message]", i18n.t("commands.commit.options.message"))
+  .option("-t, --type <type>", i18n.t("commands.commit.options.type"), "feat")
+  .option("-s, --scope <scope>", i18n.t("commands.commit.options.scope"))
+  .option("-b, --breaking", i18n.t("commands.commit.options.breaking"), false)
+  .option("-d, --description <description>", i18n.t("commands.commit.options.description"))
+  .option("-m, --full-message <message>", i18n.t("commands.commit.options.fullMessage"))
+  .option("-n, --non-interactive", i18n.t("commands.commit.options.nonInteractive"))
+  .description(i18n.t("commands.commit.description"))
   .action(async (messageArgument, options) => {
     try {
       let commitMessage = "";
@@ -54,7 +43,7 @@ export const commitCommand = new Command("commit")
         }
         
         if (answers.breaking) {
-          commitMessage += "\n\nBREAKING CHANGE: This change breaks compatibility with previous versions.";
+          commitMessage += `\n\n${i18n.t("commands.commit.messages.breakingChange")}`;
         }
       } else if (options.fullMessage) {
         commitMessage = options.fullMessage;
@@ -63,8 +52,8 @@ export const commitCommand = new Command("commit")
         // Validate commit type
         const type = options.type.toLowerCase();
         if (!Object.keys(COMMIT_TYPES).includes(type)) {
-          console.error(`❌ Invalid commit type: ${type}`);
-          console.log("Valid commit types:");
+          console.error(i18n.t("commands.commit.messages.invalidType", type));
+          console.log(i18n.t("commands.commit.messages.validTypes"));
           Object.entries(COMMIT_TYPES).forEach(([key, value]) => {
             console.log(`  - ${key}: ${value}`);
           });
@@ -87,7 +76,7 @@ export const commitCommand = new Command("commit")
         // Add main message
         const mainMessage = messageArgument || options.description || "";
         if (!mainMessage) {
-          console.error("❌ You must provide a message for the commit");
+          console.error(i18n.t("commands.commit.messages.messageRequired"));
           return;
         }
         
@@ -100,16 +89,16 @@ export const commitCommand = new Command("commit")
         
         // Add footer for breaking changes
         if (options.breaking) {
-          commitMessage += "\n\nBREAKING CHANGE: This change breaks compatibility with previous versions.";
+          commitMessage += `\n\n${i18n.t("commands.commit.messages.breakingChange")}`;
         }
       }
 
-      console.log(`📝 Generating commit with message: "${commitMessage}"`);
+      console.log(i18n.t("commands.commit.messages.generatingCommit", commitMessage));
       await git.add("./*");
       await git.commit(commitMessage);
-      console.log("✅ Commit created successfully.");
+      console.log(i18n.t("commands.commit.messages.commitSuccess"));
     } catch (error) {
-      console.error("❌ Error creating commit:", error);
+      console.error(i18n.t("commands.commit.messages.commitError"), error);
     }
   });
 
@@ -137,30 +126,30 @@ async function promptForCommitDetails(defaultMessage: string | undefined, option
     {
       type: 'list',
       name: 'type',
-      message: 'Select the type of change:',
+      message: i18n.t("commands.commit.prompts.selectType"),
       choices: typeChoices,
       default: options.type || 'feat'
     },
     {
       type: 'input',
       name: 'scope',
-      message: 'What is the scope of this change (optional):',
+      message: i18n.t("commands.commit.prompts.enterScope"),
       default: options.scope || ''
     },
     {
       type: 'confirm',
       name: 'breaking',
-      message: 'Does this change break backward compatibility?',
+      message: i18n.t("commands.commit.prompts.isBreaking"),
       default: options.breaking || false
     },
     {
       type: 'input',
       name: 'message',
-      message: 'Write a short description:',
+      message: i18n.t("commands.commit.prompts.shortDescription"),
       default: defaultMessage || '',
       validate: (input: string) => {
         if (input.trim() === '') {
-          return 'Description is required';
+          return i18n.t("commands.commit.prompts.descriptionRequired");
         }
         return true;
       }
@@ -168,7 +157,7 @@ async function promptForCommitDetails(defaultMessage: string | undefined, option
     {
       type: 'input',
       name: 'description',
-      message: 'Provide a longer description (optional):',
+      message: i18n.t("commands.commit.prompts.longDescription"),
       default: options.description || ''
     }
   ]);

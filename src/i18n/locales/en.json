@@ -1,0 +1,66 @@
+{
+  "cli": {
+    "description": "CLI to facilitate Git usage with natural language",
+    "version": "1.0.0"
+  },
+  "commands": {
+    "commit": {
+      "description": "Creates a commit following Conventional Commits conventions",
+      "options": {
+        "message": "Commit message (optional)",
+        "type": "Semantic commit type",
+        "scope": "Scope of the change (optional)",
+        "breaking": "Indicates a breaking change",
+        "description": "Detailed description of the commit (optional)",
+        "fullMessage": "Complete commit message (overrides other options)",
+        "nonInteractive": "Use non-interactive mode (skip prompts)"
+      },
+      "prompts": {
+        "selectType": "Select the type of change:",
+        "enterScope": "What is the scope of this change (optional):",
+        "isBreaking": "Does this change break backward compatibility?",
+        "shortDescription": "Write a short description:",
+        "longDescription": "Provide a longer description (optional):",
+        "descriptionRequired": "Description is required"
+      },
+      "messages": {
+        "generatingCommit": "📝 Generating commit with message: \"{0}\"",
+        "commitSuccess": "✅ Commit created successfully.",
+        "commitError": "❌ Error creating commit:",
+        "invalidType": "❌ Invalid commit type: {0}",
+        "validTypes": "Valid commit types:",
+        "messageRequired": "❌ You must provide a message for the commit",
+        "breakingChange": "BREAKING CHANGE: This change breaks compatibility with previous versions."
+      }
+    },
+    "initProject": {
+      "description": "Initializes a Git repository and creates an empty first commit",
+      "messages": {
+        "initializingRepo": "📂 Initializing Git repository...",
+        "repoInitialized": "✅ Git repository initialized.",
+        "creatingCommit": "📝 Creating first empty commit...",
+        "projectInitialized": "✅ Git project successfully initialized.",
+        "initError": "❌ Error initializing project:"
+      }
+    }
+  },
+  "commitTypes": {
+    "feat": "New features",
+    "fix": "Bug fixes",
+    "docs": "Documentation changes",
+    "style": "Changes that do not affect the meaning of the code (whitespace, formatting, etc.)",
+    "refactor": "Code changes that neither fix bugs nor add features",
+    "perf": "Performance improvements",
+    "test": "Adding or correcting tests",
+    "build": "Changes that affect the build system or external dependencies",
+    "ci": "Changes to CI configuration and scripts",
+    "chore": "Other changes that don't modify src or test files",
+    "revert": "Reverts a previous commit"
+  },
+  "config": {
+    "saved": "✅ Configuration saved successfully.",
+    "error": "❌ Error saving configuration:",
+    "currentLanguage": "Current language: {0}",
+    "selectLanguage": "Select a language:"
+  }
+} 

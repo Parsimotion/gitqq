@@ -16,6 +16,28 @@ npm install
 npm install -g .
 ```
 
+## Multilingual Support
+
+Git Smart CLI supports multiple languages:
+
+- English
+- Spanish (Español)
+- Portuguese (Português)
+
+### Changing the Language
+
+You can change the language using the config command:
+
+```bash
+# Show current language
+git-smart config
+
+# Change language
+git-smart config language
+```
+
+The language preference is stored in a configuration file located at `~/.git-smart/config.json`.
+
 ## Available Commands
 
 ### Semantic Commit
@@ -107,6 +129,21 @@ This mode is particularly helpful for users who are new to Conventional Commits 
 | ci | Changes to CI configuration and scripts |
 | chore | Other changes that don't modify src or test files |
 | revert | Reverts a previous commit |
+
+### Configuration
+
+The `config` command allows you to manage the Git Smart CLI configuration:
+
+```bash
+# Show current configuration
+git-smart config
+
+# Change language
+git-smart config language
+
+# Show current configuration details
+git-smart config show
+```
 
 ## Benefits of Using Semantic Commits
 

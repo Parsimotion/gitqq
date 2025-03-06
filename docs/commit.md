@@ -1,6 +1,6 @@
 # Commit Command Documentation
 
-The `commit` command in Git Smart CLI allows you to create commits following the [Conventional Commits](https://www.conventionalcommits.org/) conventions, facilitating automatic changelog generation and semantic versioning.
+The `commit` command in GitQQ allows you to create commits following the [Conventional Commits](https://www.conventionalcommits.org/) conventions, facilitating automatic changelog generation and semantic versioning.
 
 ## Semantic Commit Convention
 
@@ -60,10 +60,10 @@ By default, the commit command runs in interactive mode, guiding you through the
 
 ```bash
 # Start interactive commit process
-git-smart commit
+gitqq commit
 
 # Start interactive commit with a default message
-git-smart commit "Initial commit message"
+gitqq commit "Initial commit message"
 ```
 
 The interactive mode guides you through the commit creation process with a series of prompts:
@@ -85,28 +85,28 @@ If you prefer to use the command without prompts, you can use the `-n` or `--non
 
 ```bash
 # Basic non-interactive commit
-git-smart commit -n "Add user authentication"
+gitqq commit -n "Add user authentication"
 # Result: "feat: Add user authentication"
 ```
 
 ### Bug Fix Commit (Non-Interactive)
 
 ```bash
-git-smart commit -n -t fix "Fix login form error"
+gitqq commit -n -t fix "Fix login form error"
 # Result: "fix: Fix login form error"
 ```
 
 ### Commit with Scope (Non-Interactive)
 
 ```bash
-git-smart commit -n -t feat -s auth "Implement Google login"
+gitqq commit -n -t feat -s auth "Implement Google login"
 # Result: "feat(auth): Implement Google login"
 ```
 
 ### Commit with Breaking Change (Non-Interactive)
 
 ```bash
-git-smart commit -n -t feat -s api -b "Change response structure"
+gitqq commit -n -t feat -s api -b "Change response structure"
 # Result: "feat(api)!: Change response structure
 
 # BREAKING CHANGE: This change breaks compatibility with previous versions."
@@ -115,7 +115,7 @@ git-smart commit -n -t feat -s api -b "Change response structure"
 ### Commit with Detailed Description (Non-Interactive)
 
 ```bash
-git-smart commit -n -t docs -d "Update all API documentation including new endpoints and usage examples" "Update API documentation"
+gitqq commit -n -t docs -d "Update all API documentation including new endpoints and usage examples" "Update API documentation"
 # Result: "docs: Update API documentation
 
 # Update all API documentation including new endpoints and usage examples"
@@ -126,7 +126,7 @@ git-smart commit -n -t docs -d "Update all API documentation including new endpo
 The `-m` or `--full-message` option allows you to specify a complete commit message, bypassing all other options and the interactive mode:
 
 ```bash
-git-smart commit -m "feat(auth)!: implement Google authentication
+gitqq commit -m "feat(auth)!: implement Google authentication
 
 This implementation adds support for authentication using Google accounts.
 Includes new endpoints and authentication flow updates.

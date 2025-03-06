@@ -1,5 +1,5 @@
 {
-  "name": "git-smart-cli",
+  "name": "gitqq",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -35,6 +35,6 @@
     "prettier": "^3.5.3"
   },
   "bin": {
-    "git-smart": "dist/index.js"
+    "gitqq": "dist/index.js"
   }
 }

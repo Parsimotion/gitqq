@@ -16,7 +16,7 @@ interface Config {
 }
 
 // Ruta al archivo de configuración
-const CONFIG_DIR = path.join(os.homedir(), '.git-smart');
+const CONFIG_DIR = path.join(os.homedir(), '.gitqq');
 const CONFIG_FILE = path.join(CONFIG_DIR, 'config.json');
 
 // Idioma por defecto

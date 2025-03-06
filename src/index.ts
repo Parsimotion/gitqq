@@ -9,7 +9,7 @@ import { i18n } from "./i18n";
 const program = new Command();
 
 program
-  .name("git-smart")
+  .name("gitqq")
   .description(i18n.t("cli.description"))
   .version(i18n.t("cli.version"));
 

@@ -1,4 +1,4 @@
-# Git Smart CLI
+# GitQQ (Git Quick Quick)
 
 A command-line tool to facilitate the use of Git with natural language and development best practices.
 
@@ -6,8 +6,8 @@ A command-line tool to facilitate the use of Git with natural language and devel
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/git-smart-cli.git
-cd git-smart-cli
+git clone https://github.com/your-username/gitqq.git
+cd gitqq
 
 # Install dependencies
 npm install
@@ -18,7 +18,7 @@ npm install -g .
 
 ## Multilingual Support
 
-Git Smart CLI supports multiple languages:
+GitQQ supports multiple languages:
 
 - English
 - Spanish (Español)
@@ -30,13 +30,13 @@ You can change the language using the config command:
 
 ```bash
 # Show current language
-git-smart config
+gitqq config
 
 # Change language
-git-smart config language
+gitqq config language
 ```
 
-The language preference is stored in a configuration file located at `~/.git-smart/config.json`.
+The language preference is stored in a configuration file located at `~/.gitqq/config.json`.
 
 ## Available Commands
 
@@ -68,10 +68,10 @@ By default, the commit command runs in interactive mode, guiding you through the
 
 ```bash
 # Basic form - will start interactive prompts
-git-smart commit
+gitqq commit
 
 # With a default message - will start interactive prompts with pre-filled message
-git-smart commit "Initial message"
+gitqq commit "Initial message"
 ```
 
 #### Non-Interactive Mode
@@ -80,22 +80,22 @@ If you prefer to use the command without prompts, you can use the `-n` or `--non
 
 ```bash
 # Non-interactive mode with basic message
-git-smart commit -n "Commit message"
+gitqq commit -n "Commit message"
 
 # Specifying the type (default is "feat")
-git-smart commit -n -t fix "Fixes authentication error"
+gitqq commit -n -t fix "Fixes authentication error"
 
 # With scope
-git-smart commit -n -t feat -s auth "Add Google authentication"
+gitqq commit -n -t feat -s auth "Add Google authentication"
 
 # With breaking change
-git-smart commit -n -t feat -s api -b "Change API response structure"
+gitqq commit -n -t feat -s api -b "Change API response structure"
 
 # With detailed description
-git-smart commit -n -t docs -d "Updates complete project documentation" "Update README"
+gitqq commit -n -t docs -d "Updates complete project documentation" "Update README"
 
 # Custom complete message (always non-interactive)
-git-smart commit -m "feat(auth)!: implement Google authentication
+gitqq commit -m "feat(auth)!: implement Google authentication
 
 Detailed description of the change.
 
@@ -132,17 +132,17 @@ This mode is particularly helpful for users who are new to Conventional Commits 
 
 ### Configuration
 
-The `config` command allows you to manage the Git Smart CLI configuration:
+The `config` command allows you to manage the GitQQ configuration:
 
 ```bash
 # Show current configuration
-git-smart config
+gitqq config
 
 # Change language
-git-smart config language
+gitqq config language
 
 # Show current configuration details
-git-smart config show
+gitqq config show
 ```
 
 ## Benefits of Using Semantic Commits

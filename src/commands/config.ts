@@ -3,7 +3,7 @@ import inquirer from "inquirer";
 import { i18n, Language } from "../i18n";
 
 export const configCommand = new Command("config")
-  .description("Manage git-smart configuration")
+  .description("Manage gitqq configuration")
   .action(async () => {
     const currentLanguage = i18n.getCurrentLanguage();
     console.log(`${i18n.t("config.currentLanguage").replace("{0}", currentLanguage)}`);

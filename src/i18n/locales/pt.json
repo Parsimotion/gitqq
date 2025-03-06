@@ -1,6 +1,6 @@
 {
   "cli": {
-    "description": "CLI para facilitar o uso do Git com linguagem natural",
+    "description": "CLI para facilitar o uso do Git com linguagem natural (Git Quick Quick)",
     "version": "1.0.0"
   },
   "commands": {

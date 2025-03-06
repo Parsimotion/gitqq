@@ -8,7 +8,7 @@ build:
 	$(TS_COMPILER)
 
 # Compile, link the binary locally and set execution permissions
-install: build
+link: build
 	$(NPM) link
 	chmod +x $(NPM_BIN)
 

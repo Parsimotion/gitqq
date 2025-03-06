@@ -12,11 +12,13 @@
   "dependencies": {
     "@types/node": "^22.13.9",
     "commander": "^13.1.0",
+    "inquirer": "^12.4.2",
     "simple-git": "^3.27.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2"
   },
   "devDependencies": {
+    "@types/inquirer": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^8.26.0",
     "@typescript-eslint/parser": "^8.26.0",
     "eslint": "^9.21.0",

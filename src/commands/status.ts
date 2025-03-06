@@ -33,7 +33,8 @@ async function checkRepositoryStatus() {
     isClean: status.isClean(),
     ahead: status.ahead,
     behind: status.behind,
-    files: status.files || []
+    files: status.files || [],
+    current: status.current
   };
 }
 

@@ -42,6 +42,39 @@
         "projectInitialized": "✅ Projeto Git inicializado com sucesso.",
         "initError": "❌ Erro ao inicializar o projeto:"
       }
+    },
+    "formatCommits": {
+      "description": "Formatar commits existentes para o formato Conventional Commits",
+      "options": {
+        "fromCommit": "Hash do commit a partir do qual iniciar a análise"
+      },
+      "messages": {
+        "invalidCommit": "❌ Hash de commit inválido: {0}",
+        "noCommits": "Nenhum commit encontrado para formatar.",
+        "foundCommits": "Encontrados {0} commits para analisar.\n",
+        "alreadyConventional": "✅ O commit {0} já está no formato convencional: \"{1}\"",
+        "suggestedChange": "🔄 {0}: \"{1}\" => \"{2}\"",
+        "allConventional": "\nTodos os commits já estão no formato convencional. Nada para formatar.",
+        "reviewingCommit": "\nRevisando commit {0}/{1}:",
+        "originalCommit": "Original: \"{0}\"",
+        "suggestedCommit": "Sugerido: \"{0}\"",
+        "noCommitsSelected": "\nNenhum commit selecionado para formatação. Operação cancelada.",
+        "summary": "\n📋 Resumo das alterações a serem aplicadas:",
+        "applyingChanges": "\n🔄 Aplicando alterações ao histórico de commits...",
+        "updatedCommit": "✅ Commit {0} atualizado",
+        "errorUpdating": "❌ Erro ao atualizar o commit {0}:",
+        "conversionComplete": "\n✅ Formatação de commits concluída com sucesso!",
+        "forcePushWarning": "⚠️  Nota: Esta operação reescreveu seu histórico do Git. Se você já enviou esses commits,\n   precisará fazer um push forçado com 'git push --force'.",
+        "conversionError": "❌ Erro ao formatar commits:"
+      },
+      "prompts": {
+        "commitAction": "O que você deseja fazer com este commit?",
+        "acceptSuggestion": "Aceitar sugestão",
+        "editSuggestion": "Editar sugestão",
+        "skipCommit": "Pular este commit",
+        "confirmRewrite": "Tem certeza de que deseja reescrever {0} commits?",
+        "operationCancelled": "Operação cancelada."
+      }
     }
   },
   "commitTypes": {

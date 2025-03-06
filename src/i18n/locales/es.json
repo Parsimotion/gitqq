@@ -42,6 +42,39 @@
         "projectInitialized": "✅ Proyecto Git inicializado con éxito.",
         "initError": "❌ Error al inicializar el proyecto:"
       }
+    },
+    "formatCommits": {
+      "description": "Formatear commits existentes al formato de Conventional Commits",
+      "options": {
+        "fromCommit": "Hash del commit desde donde comenzar el análisis"
+      },
+      "messages": {
+        "invalidCommit": "❌ Hash de commit inválido: {0}",
+        "noCommits": "No se encontraron commits para formatear.",
+        "foundCommits": "Se encontraron {0} commits para analizar.\n",
+        "alreadyConventional": "✅ El commit {0} ya está en formato convencional: \"{1}\"",
+        "suggestedChange": "🔄 {0}: \"{1}\" => \"{2}\"",
+        "allConventional": "\nTodos los commits ya están en formato convencional. Nada que formatear.",
+        "reviewingCommit": "\nRevisando commit {0}/{1}:",
+        "originalCommit": "Original: \"{0}\"",
+        "suggestedCommit": "Sugerido: \"{0}\"",
+        "noCommitsSelected": "\nNo se seleccionaron commits para formatear. Operación cancelada.",
+        "summary": "\n📋 Resumen de cambios a aplicar:",
+        "applyingChanges": "\n🔄 Aplicando cambios al historial de commits...",
+        "updatedCommit": "✅ Commit {0} actualizado",
+        "errorUpdating": "❌ Error al actualizar el commit {0}:",
+        "conversionComplete": "\n✅ Formateo de commits completado con éxito!",
+        "forcePushWarning": "⚠️  Nota: Esta operación ha reescrito tu historial de Git. Si ya has enviado estos commits,\n   necesitarás hacer un push forzado con 'git push --force'.",
+        "conversionError": "❌ Error al formatear commits:"
+      },
+      "prompts": {
+        "commitAction": "¿Qué deseas hacer con este commit?",
+        "acceptSuggestion": "Aceptar sugerencia",
+        "editSuggestion": "Editar sugerencia",
+        "skipCommit": "Omitir este commit",
+        "confirmRewrite": "¿Estás seguro de que deseas reescribir {0} commits?",
+        "operationCancelled": "Operación cancelada."
+      }
     }
   },
   "commitTypes": {

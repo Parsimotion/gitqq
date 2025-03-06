@@ -42,6 +42,39 @@
         "projectInitialized": "✅ Git project successfully initialized.",
         "initError": "❌ Error initializing project:"
       }
+    },
+    "formatCommits": {
+      "description": "Format existing commits to conventional commit format",
+      "options": {
+        "fromCommit": "Starting commit hash to analyze"
+      },
+      "messages": {
+        "invalidCommit": "❌ Invalid commit hash: {0}",
+        "noCommits": "No commits found to format.",
+        "foundCommits": "Found {0} commits to analyze.\n",
+        "alreadyConventional": "✅ Commit {0} is already in conventional format: \"{1}\"",
+        "suggestedChange": "🔄 {0}: \"{1}\" => \"{2}\"",
+        "allConventional": "\nAll commits are already in conventional format. Nothing to format.",
+        "reviewingCommit": "\nReviewing commit {0}/{1}:",
+        "originalCommit": "Original: \"{0}\"",
+        "suggestedCommit": "Suggested: \"{0}\"",
+        "noCommitsSelected": "\nNo commits selected for formatting. Operation cancelled.",
+        "summary": "\n📋 Summary of changes to be applied:",
+        "applyingChanges": "\n🔄 Applying changes to commit history...",
+        "updatedCommit": "✅ Updated commit {0}",
+        "errorUpdating": "❌ Error updating commit {0}:",
+        "conversionComplete": "\n✅ Commit formatting completed successfully!",
+        "forcePushWarning": "⚠️  Note: This operation has rewritten your git history. If you've already pushed these commits,\n   you'll need to force push with 'git push --force'.",
+        "conversionError": "❌ Error formatting commits:"
+      },
+      "prompts": {
+        "commitAction": "What would you like to do with this commit?",
+        "acceptSuggestion": "Accept suggestion",
+        "editSuggestion": "Edit suggestion",
+        "skipCommit": "Skip this commit",
+        "confirmRewrite": "Are you sure you want to rewrite {0} commits?",
+        "operationCancelled": "Operation cancelled."
+      }
     }
   },
   "commitTypes": {

@@ -1,7 +1,7 @@
 # Define variables
 TS_COMPILER = npx tsc
 NPM = npm
-NPM_BIN = $(shell $(NPM) prefix -g)/bin/git-smart
+NPM_BIN = $(shell $(NPM) prefix -g)/bin/gitqq
 
 # Compile TypeScript
 build:
@@ -18,4 +18,4 @@ clean:
 
 # Unlink the local CLI installation
 unlink:
-	$(NPM) unlink -g git-smart
+	$(NPM) unlink -g gitqq

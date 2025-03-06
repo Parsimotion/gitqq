@@ -145,6 +145,40 @@ gitqq config language
 gitqq config show
 ```
 
+### Inicialización de Proyecto
+
+El comando `init-project` permite inicializar rápidamente un nuevo repositorio Git con un commit inicial:
+
+```bash
+# Inicializar un nuevo repositorio Git
+gitqq init-project
+```
+
+Este comando realiza las siguientes acciones:
+1. Inicializa un nuevo repositorio Git
+2. Crea un commit inicial vacío con el mensaje "(chore): initial commit"
+
+Es útil para comenzar rápidamente un nuevo proyecto con una estructura de commits limpia.
+
+### Formateo de Commits
+
+El comando `format-commits` permite convertir commits existentes al formato de Commits Convencionales:
+
+```bash
+# Convertir commits desde un commit específico hasta HEAD
+gitqq format-commits <hash-del-commit>
+```
+
+Características principales:
+- Analiza cada commit desde el commit especificado hasta HEAD
+- Sugiere automáticamente un formato convencional basado en el mensaje original
+- Permite revisar y editar cada sugerencia
+- Reescribe los mensajes de commit manteniendo el historial del repositorio
+
+Este comando es especialmente útil para estandarizar el historial de commits de un proyecto o para preparar un proyecto para la generación automática de changelogs.
+
+> **Nota**: Este comando reescribe el historial de Git. Si ya has compartido tu repositorio, necesitarás hacer un push forzado después de usar este comando, lo que puede causar problemas para otros colaboradores.
+
 ## Benefits of Using Semantic Commits
 
 - **Automatic changelog generation**: Facilitates the creation of change documents between versions.

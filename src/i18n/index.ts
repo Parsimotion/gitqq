@@ -2,34 +2,34 @@ import fs from 'fs';
 import path from 'path';
 import os from 'os';
 
-// Importar archivos de traducción
+// Import translation files
 import en from './locales/en.json';
 import es from './locales/es.json';
 import pt from './locales/pt.json';
 
-// Tipos de datos para las traducciones
+// Data types for translations
 export type Language = 'en' | 'es' | 'pt';
 
-// Interfaz para la configuración
+// Interface for configuration
 interface Config {
   language: Language;
 }
 
-// Ruta al archivo de configuración
+// Path to configuration file
 const CONFIG_DIR = path.join(os.homedir(), '.gitqq');
 const CONFIG_FILE = path.join(CONFIG_DIR, 'config.json');
 
-// Idioma por defecto
+// Default language
 const DEFAULT_LANGUAGE: Language = 'en';
 
-// Cargar traducciones
+// Load translations
 const translations: Record<Language, any> = {
   en,
   es,
   pt
 };
 
-// Función para obtener la configuración actual
+// Function to get current configuration
 function getConfig(): Config {
   try {
     if (fs.existsSync(CONFIG_FILE)) {
@@ -40,14 +40,14 @@ function getConfig(): Config {
     console.error('Error reading config file:', error);
   }
   
-  // Configuración por defecto si no existe el archivo
+  // Default configuration if file doesn't exist
   return { language: DEFAULT_LANGUAGE };
 }
 
-// Función para guardar la configuración
+// Function to save configuration
 export function saveConfig(config: Config): boolean {
   try {
-    // Asegurar que el directorio existe
+    // Ensure directory exists
     if (!fs.existsSync(CONFIG_DIR)) {
       fs.mkdirSync(CONFIG_DIR, { recursive: true });
     }
@@ -60,32 +60,32 @@ export function saveConfig(config: Config): boolean {
   }
 }
 
-// Función para cambiar el idioma
+// Function to change language
 export function setLanguage(language: Language): boolean {
   const config = getConfig();
   config.language = language;
   return saveConfig(config);
 }
 
-// Función para obtener el idioma actual
+// Function to get current language
 export function getCurrentLanguage(): Language {
   return getConfig().language;
 }
 
-// Función para obtener una traducción
+// Function to get a translation
 export function t(key: string, ...args: any[]): string {
   const language = getCurrentLanguage();
   const keys = key.split('.');
   
-  // Navegar por el objeto de traducciones
+  // Navigate through the translations object
   let translation: any = translations[language];
   for (const k of keys) {
     if (!translation || !translation[k]) {
-      // Si no se encuentra la traducción, intentar con el idioma por defecto
+      // If translation not found, try with default language
       translation = translations[DEFAULT_LANGUAGE];
       for (const defaultKey of keys) {
         if (!translation || !translation[defaultKey]) {
-          return key; // Devolver la clave si no se encuentra la traducción
+          return key; // Return the key if translation not found
         }
         translation = translation[defaultKey];
       }
@@ -94,12 +94,12 @@ export function t(key: string, ...args: any[]): string {
     translation = translation[k];
   }
   
-  // Si la traducción no es una cadena, devolver la clave
+  // If translation is not a string, return the key
   if (typeof translation !== 'string') {
     return key;
   }
   
-  // Reemplazar los argumentos en la traducción
+  // Replace arguments in the translation
   if (args.length > 0) {
     return translation.replace(/\{(\d+)\}/g, (match, index) => {
       const argIndex = parseInt(index, 10);
@@ -110,20 +110,20 @@ export function t(key: string, ...args: any[]): string {
   return translation;
 }
 
-// Función para obtener un objeto de traducción completo
+// Function to get a complete translation object
 export function getTranslationObject(key: string): any {
   const language = getCurrentLanguage();
   const keys = key.split('.');
   
-  // Navegar por el objeto de traducciones
+  // Navigate through the translations object
   let translation: any = translations[language];
   for (const k of keys) {
     if (!translation || !translation[k]) {
-      // Si no se encuentra la traducción, intentar con el idioma por defecto
+      // If translation not found, try with default language
       translation = translations[DEFAULT_LANGUAGE];
       for (const defaultKey of keys) {
         if (!translation || !translation[defaultKey]) {
-          return {}; // Devolver un objeto vacío si no se encuentra la traducción
+          return {}; // Return empty object if translation not found
         }
         translation = translation[defaultKey];
       }
@@ -135,7 +135,7 @@ export function getTranslationObject(key: string): any {
   return translation;
 }
 
-// Exportar el objeto de traducciones para acceso directo
+// Export translations object for direct access
 export const i18n = {
   t,
   getTranslationObject,

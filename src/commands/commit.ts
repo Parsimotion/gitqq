@@ -5,7 +5,7 @@ import { i18n } from "../i18n";
 
 const git = simpleGit();
 
-// Obtener los tipos de commit desde las traducciones
+// Get commit types from translations
 const COMMIT_TYPES = i18n.getTranslationObject("commitTypes");
 
 export const commitCommand = new Command("commit")

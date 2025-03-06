@@ -9,21 +9,21 @@ export const configCommand = new Command("config")
     console.log(`${i18n.t("config.currentLanguage").replace("{0}", currentLanguage)}`);
   });
 
-// Subcomando para cambiar el idioma
+// Subcommand to change the language
 configCommand
   .command("language")
   .description("Change the language of the CLI")
   .action(async () => {
     const currentLanguage = i18n.getCurrentLanguage();
     
-    // Opciones de idioma
+    // Language options
     const languageChoices = [
       { name: "English", value: "en" },
       { name: "Español", value: "es" },
       { name: "Português", value: "pt" }
     ];
     
-    // Preguntar al usuario qué idioma quiere usar
+    // Ask the user which language they want to use
     const answers = await inquirer.prompt([
       {
         type: "list",
@@ -34,7 +34,7 @@ configCommand
       }
     ]);
     
-    // Guardar la configuración
+    // Save the configuration
     const success = i18n.setLanguage(answers.language as Language);
     
     if (success) {
@@ -44,7 +44,7 @@ configCommand
     }
   });
 
-// Subcomando para mostrar la configuración actual
+// Subcommand to show the current configuration
 configCommand
   .command("show")
   .description("Show current configuration")

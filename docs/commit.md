@@ -62,6 +62,9 @@ By default, the commit command runs in interactive mode, guiding you through the
 # Start interactive commit process
 gitqq commit
 
+# Using the alias
+gitqq ci
+
 # Start interactive commit with a default message
 gitqq commit "Initial commit message"
 ```

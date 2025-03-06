@@ -15,11 +15,26 @@ program
   .description(i18n.t("cli.description"))
   .version(i18n.t("cli.version"));
 
+// Crear alias para los comandos
+const stCommand = new Command("st")
+  .description(i18n.t("commands.status.description") + " (alias)")
+  .action(async () => {
+    await statusCommand.parseAsync(process.argv);
+  });
+
+const ciCommand = new Command("ci")
+  .description(i18n.t("commands.commit.description") + " (alias)")
+  .action(async () => {
+    await commitCommand.parseAsync(process.argv);
+  });
+
 program.addCommand(initProjectCommand);
 program.addCommand(commitCommand);
 program.addCommand(configCommand);
 program.addCommand(formatCommitsCommand);
 program.addCommand(statusCommand);
+program.addCommand(stCommand);
+program.addCommand(ciCommand);
 
 // Establecer status como comando por defecto
 program

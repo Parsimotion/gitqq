@@ -52,6 +52,9 @@ gitqq
 
 # Explicitly call status command
 gitqq status
+
+# Using the alias
+gitqq st
 ```
 
 The status command shows:
@@ -70,6 +73,9 @@ The `commit` command allows you to create commits following the [Conventional Co
 ```bash
 # Interactive mode (default)
 gitqq commit
+
+# Using the alias
+gitqq ci
 
 # Non-interactive mode
 gitqq commit -n "Commit message"

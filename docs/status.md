@@ -33,6 +33,9 @@ gitqq
 
 # Explicitly call status command
 gitqq status
+
+# Using the alias
+gitqq st
 ```
 
 ## Visual Indicators

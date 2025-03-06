@@ -91,6 +91,21 @@
         "confirmRewrite": "Tem certeza de que deseja reescrever {0} commits?",
         "operationCancelled": "Operação cancelada."
       }
+    },
+    "status": {
+      "description": "Mostra o status da árvore de trabalho",
+      "messages": {
+        "repoStatus": "📊 Status do Repositório:",
+        "branchInfo": "🌿 Branch atual: {0}",
+        "ahead": "📤 Seu branch está à frente do remoto por {0} commit(s)",
+        "behind": "📥 Seu branch está atrás do remoto por {0} commit(s)",
+        "aheadBehind": "📤📥 Seu branch está à frente por {0} e atrás por {1} commit(s)",
+        "cleanRepo": "✨ Árvore de trabalho limpa. Não há mudanças para commit.",
+        "statusError": "❌ Erro ao verificar o status do repositório:"
+      },
+      "errors": {
+        "checkStatus": "❌ Erro ao verificar o status do repositório:"
+      }
     }
   },
   "commitTypes": {

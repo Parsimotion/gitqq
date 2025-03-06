@@ -91,6 +91,21 @@
         "confirmRewrite": "Are you sure you want to rewrite {0} commits?",
         "operationCancelled": "Operation cancelled."
       }
+    },
+    "status": {
+      "description": "Shows the working tree status",
+      "messages": {
+        "repoStatus": "📊 Repository Status:",
+        "branchInfo": "🌿 Current branch: {0}",
+        "ahead": "📤 Your branch is ahead of the remote by {0} commit(s)",
+        "behind": "📥 Your branch is behind the remote by {0} commit(s)",
+        "aheadBehind": "📤📥 Your branch is ahead by {0} and behind by {1} commit(s)",
+        "cleanRepo": "✨ Working tree clean. No changes to commit.",
+        "statusError": "❌ Error checking repository status:"
+      },
+      "errors": {
+        "checkStatus": "❌ Error checking repository status:"
+      }
     }
   },
   "commitTypes": {

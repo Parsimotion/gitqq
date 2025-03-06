@@ -91,6 +91,21 @@
         "confirmRewrite": "¿Estás seguro de que deseas reescribir {0} commits?",
         "operationCancelled": "Operación cancelada."
       }
+    },
+    "status": {
+      "description": "Muestra el estado del árbol de trabajo",
+      "messages": {
+        "repoStatus": "📊 Estado del Repositorio:",
+        "branchInfo": "🌿 Rama actual: {0}",
+        "ahead": "📤 Tu rama está adelantada respecto al remoto por {0} commit(s)",
+        "behind": "📥 Tu rama está atrasada respecto al remoto por {0} commit(s)",
+        "aheadBehind": "📤📥 Tu rama está adelantada por {0} y atrasada por {1} commit(s)",
+        "cleanRepo": "✨ Árbol de trabajo limpio. No hay cambios para hacer commit.",
+        "statusError": "❌ Error al verificar el estado del repositorio:"
+      },
+      "errors": {
+        "checkStatus": "❌ Error al verificar el estado del repositorio:"
+      }
     }
   },
   "commitTypes": {

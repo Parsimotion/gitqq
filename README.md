@@ -42,6 +42,27 @@ The language preference is stored in a configuration file located at `~/.gitqq/c
 
 GitQQ provides the following commands to streamline your Git workflow:
 
+### 📊 Repository Status (Default Command)
+
+The `status` command provides a clear and detailed view of your repository's current state. This is the default command that runs when you execute `gitqq` without any arguments.
+
+```bash
+# Show repository status (default)
+gitqq
+
+# Explicitly call status command
+gitqq status
+```
+
+The status command shows:
+- Staged changes (will be committed)
+- Unstaged changes (will NOT be committed)
+- Untracked files
+- Branch information and relationship with remote
+- Summary of changes
+
+[Detailed status command documentation](docs/status.md)
+
 ### 📝 Semantic Commit
 
 The `commit` command allows you to create commits following the [Conventional Commits](https://www.conventionalcommits.org/) standard, facilitating automatic changelog generation and semantic versioning.

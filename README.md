@@ -106,4 +106,4 @@ Contributions are welcome! Please make sure to follow the code and commit conven
 
 ## 📄 License
 
-This project is licensed under the ISC license - see the LICENSE file for details. 
+This project is licensed under the MIT license - see the LICENSE file for details. 

@@ -15,7 +15,7 @@
     "i18n"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "description": "CLI to facilitate Git usage with natural language",
   "dependencies": {
     "@types/node": "^22.13.9",

@@ -32,8 +32,8 @@ async function checkRepositoryStatus() {
     notAdded: status.not_added,
     notAddedCount: status.not_added.length,
     hasChanges: status.files && status.files.length > 0,
-    hasStagedChanges: status.staged.length > 0,
-    hasUnstagedChanges: status.not_added.length > 0 || status.modified.length > 0,
+    hasStagedChanges: status.staged.length > 0 || status.created.length > 0 || status.deleted.length > 0 || status.renamed.length > 0,
+    hasUnstagedChanges: false, // Lo calcularemos después de filtrar los modificados
     isClean: status.isClean(),
     ahead: status.ahead,
     behind: status.behind,
@@ -137,15 +137,24 @@ export const commitCommand = new Command("commit")
   .option("-b, --breaking", i18n.t("commands.commit.options.breaking"), false)
   .option("-d, --description <description>", i18n.t("commands.commit.options.description"))
   .option("-m, --full-message <message>", i18n.t("commands.commit.options.fullMessage"))
-  .option("-n, --non-interactive", i18n.t("commands.commit.options.nonInteractive"))
+  .option("-n, --non-interactive", i18n.t("commands.commit.options.nonInteractive"), false)
   .description(i18n.t("commands.commit.description"))
   .action(async (messageArgument, options) => {
     try {
-      // Check repository status before proceeding
+      // Check repository status
       const status = await checkRepositoryStatus();
       
-      // Display repository status summary
+      // Display repository status
       displayStatusSummary(status);
+      
+      // Calculate real unstaged changes after filtering out staged files
+      const modifiedNotStaged = status.modified.filter(file => !status.staged.includes(file));
+      const deletedUnstaged = status.files && Array.isArray(status.files) 
+        ? status.files.filter(file => file.working_dir === 'D' && file.index !== 'D').map(file => file.path)
+        : [];
+      
+      // Update hasUnstagedChanges based on filtered data
+      status.hasUnstagedChanges = modifiedNotStaged.length > 0 || deletedUnstaged.length > 0 || status.notAdded.length > 0;
       
       // If there are no staged changes, inform the user and exit
       if (!status.hasStagedChanges) {

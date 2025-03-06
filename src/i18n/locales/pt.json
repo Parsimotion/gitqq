@@ -5,23 +5,24 @@
   },
   "commands": {
     "commit": {
-      "description": "Cria um commit seguindo as convenções do Conventional Commits",
+      "description": "Cria um commit seguindo as convenções de Commits Convencionais",
       "options": {
         "message": "Mensagem do commit (opcional)",
         "type": "Tipo de commit semântico",
         "scope": "Escopo da mudança (opcional)",
-        "breaking": "Indica uma mudança que quebra compatibilidade",
+        "breaking": "Indica uma mudança disruptiva",
         "description": "Descrição detalhada do commit (opcional)",
         "fullMessage": "Mensagem completa do commit (substitui outras opções)",
-        "nonInteractive": "Usar modo não interativo (pular prompts)"
+        "nonInteractive": "Usar modo não interativo (pular perguntas)"
       },
       "prompts": {
         "selectType": "Selecione o tipo de mudança:",
-        "enterScope": "Qual é o escopo desta mudança (opcional):",
+        "enterScope": "Qual é o escopo desta mudança (opcional)?:",
         "isBreaking": "Esta mudança quebra a compatibilidade com versões anteriores?",
         "shortDescription": "Escreva uma descrição curta:",
         "longDescription": "Forneça uma descrição mais longa (opcional):",
-        "descriptionRequired": "A descrição é obrigatória"
+        "descriptionRequired": "A descrição é obrigatória",
+        "continueWithUnstagedChanges": "Você tem mudanças não preparadas. Deseja continuar com o commit?"
       },
       "messages": {
         "generatingCommit": "📝 Gerando commit com mensagem: \"{0}\"",
@@ -30,7 +31,22 @@
         "invalidType": "❌ Tipo de commit inválido: {0}",
         "validTypes": "Tipos de commit válidos:",
         "messageRequired": "❌ Você deve fornecer uma mensagem para o commit",
-        "breakingChange": "BREAKING CHANGE: Esta mudança quebra a compatibilidade com versões anteriores."
+        "breakingChange": "MUDANÇA DISRUPTIVA: Esta mudança quebra a compatibilidade com versões anteriores.",
+        "repoStatus": "📊 Estado do Repositório:",
+        "stagedChanges": "🟢 Mudanças preparadas (serão incluídas no commit):",
+        "unstagedChanges": "🟠 Mudanças não preparadas (NÃO serão incluídas no commit):",
+        "modifiedFiles": "Arquivos modificados:",
+        "modifiedNotStaged": "🟠 Arquivos modificados (mudanças não preparadas para commit):",
+        "newFiles": "Arquivos novos:",
+        "deletedFiles": "Arquivos excluídos:",
+        "deletedNotStaged": "🟠 Arquivos excluídos (não preparados para commit):",
+        "renamedFiles": "Arquivos renomeados:",
+        "untrackedFiles": "🔵 Arquivos não rastreados (não incluídos no commit):",
+        "conflictedFiles": "⚠️ Arquivos com conflitos (resolva antes de fazer commit):",
+        "noStagedChanges": "❌ Nenhuma mudança preparada encontrada. Não há nada para fazer commit.",
+        "stageChangesHint": "💡 Use 'git add <arquivo>' para preparar mudanças antes de fazer commit.",
+        "commitCancelled": "🛑 Operação de commit cancelada.",
+        "commitSummary": "📋 Resumo: {0} mudanças para commit, {1} mudanças não preparadas para commit."
       }
     },
     "initProject": {

@@ -21,7 +21,8 @@
         "isBreaking": "Does this change break backward compatibility?",
         "shortDescription": "Write a short description:",
         "longDescription": "Provide a longer description (optional):",
-        "descriptionRequired": "Description is required"
+        "descriptionRequired": "Description is required",
+        "continueWithUnstagedChanges": "You have unstaged changes. Do you want to continue with the commit?"
       },
       "messages": {
         "generatingCommit": "📝 Generating commit with message: \"{0}\"",
@@ -30,7 +31,22 @@
         "invalidType": "❌ Invalid commit type: {0}",
         "validTypes": "Valid commit types:",
         "messageRequired": "❌ You must provide a message for the commit",
-        "breakingChange": "BREAKING CHANGE: This change breaks compatibility with previous versions."
+        "breakingChange": "BREAKING CHANGE: This change breaks compatibility with previous versions.",
+        "repoStatus": "📊 Repository Status:",
+        "stagedChanges": "🟢 Staged changes (will be committed):",
+        "unstagedChanges": "🟠 Unstaged changes (will NOT be committed):",
+        "modifiedFiles": "Modified files:",
+        "modifiedNotStaged": "🟠 Modified files (changes not staged for commit):",
+        "newFiles": "New files:",
+        "deletedFiles": "Deleted files:",
+        "deletedNotStaged": "🟠 Deleted files (not staged for commit):",
+        "renamedFiles": "Renamed files:",
+        "untrackedFiles": "🔵 Untracked files (not included in commit):",
+        "conflictedFiles": "⚠️ Conflicted files (resolve before committing):",
+        "noStagedChanges": "❌ No staged changes found. Nothing to commit.",
+        "stageChangesHint": "💡 Use 'git add <file>' to stage changes before committing.",
+        "commitCancelled": "🛑 Commit operation cancelled.",
+        "commitSummary": "📋 Summary: {0} changes to commit, {1} changes not staged for commit."
       }
     },
     "initProject": {

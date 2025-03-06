@@ -8,6 +8,128 @@ const git = simpleGit();
 // Get commit types from translations
 const COMMIT_TYPES = i18n.getTranslationObject("commitTypes");
 
+/**
+ * Checks the repository status and returns information about staged and unstaged files
+ * @returns Object with status information
+ */
+async function checkRepositoryStatus() {
+  const status = await git.status();
+  
+  return {
+    isRepo: true, // Simplemente asumimos que es un repositorio válido ya que estamos ejecutando comandos git
+    staged: status.staged,
+    stagedCount: status.staged.length,
+    modified: status.modified,
+    modifiedCount: status.modified.length,
+    created: status.created,
+    createdCount: status.created.length,
+    deleted: status.deleted,
+    deletedCount: status.deleted.length,
+    renamed: status.renamed,
+    renamedCount: status.renamed.length,
+    conflicted: status.conflicted,
+    conflictedCount: status.conflicted.length,
+    notAdded: status.not_added,
+    notAddedCount: status.not_added.length,
+    hasChanges: status.files && status.files.length > 0,
+    hasStagedChanges: status.staged.length > 0,
+    hasUnstagedChanges: status.not_added.length > 0 || status.modified.length > 0,
+    isClean: status.isClean(),
+    ahead: status.ahead,
+    behind: status.behind,
+    files: status.files || []
+  };
+}
+
+/**
+ * Displays a summary of the repository status
+ * @param status Repository status object
+ */
+function displayStatusSummary(status: any) {
+  console.log(i18n.t("commands.commit.messages.repoStatus"));
+  
+  // 1. Staged changes (will be committed)
+  if (status.hasStagedChanges) {
+    console.log(i18n.t("commands.commit.messages.stagedChanges"));
+    
+    if (status.staged.length > 0) {
+      status.staged.forEach((file: string) => {
+        console.log(`  - ${file}`);
+      });
+    }
+    
+    if (status.created.length > 0) {
+      console.log(i18n.t("commands.commit.messages.newFiles"));
+      status.created.forEach((file: string) => {
+        console.log(`  - ${file}`);
+      });
+    }
+    
+    if (status.deleted.length > 0) {
+      console.log(i18n.t("commands.commit.messages.deletedFiles"));
+      status.deleted.forEach((file: string) => {
+        console.log(`  - ${file}`);
+      });
+    }
+    
+    if (status.renamed.length > 0) {
+      console.log(i18n.t("commands.commit.messages.renamedFiles"));
+      status.renamed.forEach((file: any) => {
+        console.log(`  - ${file.from} → ${file.to}`);
+      });
+    }
+  }
+  
+  // 2. Modified files (changes not staged for commit)
+  const modifiedNotStaged = status.modified.filter((file: string) => 
+    !status.staged.includes(file)
+  );
+  
+  if (modifiedNotStaged.length > 0) {
+    console.log(i18n.t("commands.commit.messages.modifiedNotStaged"));
+    modifiedNotStaged.forEach((file: string) => {
+      console.log(`  - ${file}`);
+    });
+  }
+  
+  // 2.1 Deleted files not staged for commit
+  const deletedUnstaged = status.files && Array.isArray(status.files) 
+    ? status.files.filter((file: any) => 
+        file.working_dir === 'D' && file.index !== 'D'
+      ).map((file: any) => file.path)
+    : [];
+  
+  if (deletedUnstaged.length > 0) {
+    console.log(i18n.t("commands.commit.messages.deletedNotStaged"));
+    deletedUnstaged.forEach((file: string) => {
+      console.log(`  - ${file}`);
+    });
+  }
+  
+  // 3. Untracked files (separate category)
+  if (status.notAdded.length > 0) {
+    console.log(i18n.t("commands.commit.messages.untrackedFiles"));
+    status.notAdded.forEach((file: string) => {
+      console.log(`  - ${file}`);
+    });
+  }
+  
+  // 4. Conflicted files
+  if (status.conflictedCount > 0) {
+    console.log(i18n.t("commands.commit.messages.conflictedFiles"));
+    status.conflicted.forEach((file: string) => {
+      console.log(`  - ${file}`);
+    });
+  }
+  
+  // 5. Summary of what will be committed vs what won't
+  if (status.hasStagedChanges || status.hasUnstagedChanges) {
+    console.log(i18n.t("commands.commit.messages.commitSummary", 
+      status.staged.length + status.created.length + status.deleted.length + status.renamed.length,
+      modifiedNotStaged.length + deletedUnstaged.length + status.notAdded.length));
+  }
+}
+
 export const commitCommand = new Command("commit")
   .argument("[message]", i18n.t("commands.commit.options.message"))
   .option("-t, --type <type>", i18n.t("commands.commit.options.type"), "feat")
@@ -19,6 +141,36 @@ export const commitCommand = new Command("commit")
   .description(i18n.t("commands.commit.description"))
   .action(async (messageArgument, options) => {
     try {
+      // Check repository status before proceeding
+      const status = await checkRepositoryStatus();
+      
+      // Display repository status summary
+      displayStatusSummary(status);
+      
+      // If there are no staged changes, inform the user and exit
+      if (!status.hasStagedChanges) {
+        console.error(i18n.t("commands.commit.messages.noStagedChanges"));
+        console.log(i18n.t("commands.commit.messages.stageChangesHint"));
+        return;
+      }
+      
+      // If there are unstaged changes, ask if the user wants to continue
+      if (status.hasUnstagedChanges) {
+        const { shouldContinue } = await inquirer.prompt([
+          {
+            type: 'confirm',
+            name: 'shouldContinue',
+            message: i18n.t("commands.commit.prompts.continueWithUnstagedChanges"),
+            default: true
+          }
+        ]);
+        
+        if (!shouldContinue) {
+          console.log(i18n.t("commands.commit.messages.commitCancelled"));
+          return;
+        }
+      }
+      
       let commitMessage = "";
 
       // Use interactive mode by default unless non-interactive flag is set or full-message is provided
@@ -94,7 +246,10 @@ export const commitCommand = new Command("commit")
       }
 
       console.log(i18n.t("commands.commit.messages.generatingCommit", commitMessage));
-      await git.add("./*");
+      
+      // We no longer need to add all files since we're now checking staged files
+      // await git.add("./*");
+      
       await git.commit(commitMessage);
       console.log(i18n.t("commands.commit.messages.commitSuccess"));
     } catch (error) {

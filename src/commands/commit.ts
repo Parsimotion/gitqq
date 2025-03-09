@@ -296,18 +296,6 @@ async function promptForCommitDetails(defaultMessage: string | undefined, option
     },
     {
       type: 'input',
-      name: 'scope',
-      message: i18n.t("commands.commit.prompts.enterScope"),
-      default: options.scope || ''
-    },
-    {
-      type: 'confirm',
-      name: 'breaking',
-      message: i18n.t("commands.commit.prompts.isBreaking"),
-      default: options.breaking || false
-    },
-    {
-      type: 'input',
       name: 'message',
       message: i18n.t("commands.commit.prompts.shortDescription"),
       default: defaultMessage || '',
@@ -317,6 +305,18 @@ async function promptForCommitDetails(defaultMessage: string | undefined, option
         }
         return true;
       }
+    },
+    {
+      type: 'input',
+      name: 'scope',
+      message: i18n.t("commands.commit.prompts.enterScope"),
+      default: options.scope || ''
+    },
+    {
+      type: 'confirm',
+      name: 'breaking',
+      message: i18n.t("commands.commit.prompts.isBreaking"),
+      default: options.breaking || false
     },
     {
       type: 'input',

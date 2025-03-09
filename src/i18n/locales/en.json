@@ -1,7 +1,12 @@
 {
   "cli": {
     "description": "CLI to facilitate Git usage with natural language (Git Quick Quick)",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "unknownCommand": "Command not found in GitQQ: %s",
+    "redirectingToGit": "Redirecting to native Git command...",
+    "gitCommandFailed": "Git command failed with exit code: %s",
+    "gitExecutionError": "Error executing Git command:",
+    "gitCommandSuccess": "✅ Git command completed successfully."
   },
   "commands": {
     "commit": {

@@ -182,33 +182,17 @@ export const commitCommand = new Command("commit")
       
       let commitMessage = "";
 
-      // Use interactive mode by default unless non-interactive flag is set or full-message is provided
-      if (!options.nonInteractive && !options.fullMessage) {
-        const answers = await promptForCommitDetails(messageArgument, options);
-        
-        // Build message from interactive answers
-        commitMessage = answers.type;
-        
-        if (answers.scope) {
-          commitMessage += `(${answers.scope})`;
-        }
-        
-        if (answers.breaking) {
-          commitMessage += "!";
-        }
-        
-        commitMessage += `: ${answers.message}`;
-        
-        if (answers.description) {
-          commitMessage += `\n\n${answers.description}`;
-        }
-        
-        if (answers.breaking) {
-          commitMessage += `\n\n${i18n.t("commands.commit.messages.breakingChange")}`;
-        }
-      } else if (options.fullMessage) {
-        commitMessage = options.fullMessage;
-      } else {
+      // Determinar si debemos usar el modo no interactivo
+      // Si se proporciona cualquier parámetro (mensaje, tipo, ámbito, etc.), asumimos modo no interactivo
+      const hasCommandLineParams = Boolean(messageArgument) || 
+                                  options.type !== "feat" || 
+                                  Boolean(options.scope) || 
+                                  options.breaking || 
+                                  Boolean(options.description) || 
+                                  Boolean(options.fullMessage);
+      
+      // Usar modo no interactivo si se especifica explícitamente o si hay parámetros por línea de comandos
+      if (options.nonInteractive || hasCommandLineParams || options.fullMessage) {
         // Non-interactive mode
         // Validate commit type
         const type = options.type.toLowerCase();
@@ -250,6 +234,29 @@ export const commitCommand = new Command("commit")
         
         // Add footer for breaking changes
         if (options.breaking) {
+          commitMessage += `\n\n${i18n.t("commands.commit.messages.breakingChange")}`;
+        }
+      } else {
+        const answers = await promptForCommitDetails(messageArgument, options);
+        
+        // Build message from interactive answers
+        commitMessage = answers.type;
+        
+        if (answers.scope) {
+          commitMessage += `(${answers.scope})`;
+        }
+        
+        if (answers.breaking) {
+          commitMessage += "!";
+        }
+        
+        commitMessage += `: ${answers.message}`;
+        
+        if (answers.description) {
+          commitMessage += `\n\n${answers.description}`;
+        }
+        
+        if (answers.breaking) {
           commitMessage += `\n\n${i18n.t("commands.commit.messages.breakingChange")}`;
         }
       }

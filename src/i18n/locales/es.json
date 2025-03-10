@@ -130,6 +130,13 @@
     "saved": "✅ Configuración guardada correctamente.",
     "error": "❌ Error al guardar la configuración:",
     "currentLanguage": "Idioma actual: {0}",
-    "selectLanguage": "Selecciona un idioma:"
+    "selectLanguage": "Selecciona un idioma:",
+    "currentInteractionMode": "Modo de interacción actual: {0}",
+    "selectInteractionMode": "Selecciona un modo de interacción:",
+    "interactionModes": {
+      "interactive": "Interactivo (siempre pedir entrada)",
+      "nonInteractive": "No interactivo (usar solo argumentos de línea de comando)",
+      "hybrid": "Híbrido (pedir solo los argumentos faltantes)"
+    }
   }
 } 

@@ -130,6 +130,13 @@
     "saved": "✅ Configuração salva com sucesso.",
     "error": "❌ Erro ao salvar configuração:",
     "currentLanguage": "Idioma atual: {0}",
-    "selectLanguage": "Selecione um idioma:"
+    "selectLanguage": "Selecione um idioma:",
+    "currentInteractionMode": "Modo de interação atual: {0}",
+    "selectInteractionMode": "Selecione um modo de interação:",
+    "interactionModes": {
+      "interactive": "Interativo (sempre pedir entrada)",
+      "nonInteractive": "Não interativo (usar apenas argumentos de linha de comando)",
+      "hybrid": "Híbrido (pedir apenas argumentos faltantes)"
+    }
   }
 } 

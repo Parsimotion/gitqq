@@ -182,17 +182,34 @@ export const commitCommand = new Command("commit")
       
       let commitMessage = "";
 
-      // Determinar si debemos usar el modo no interactivo
-      // Si se proporciona cualquier parámetro (mensaje, tipo, ámbito, etc.), asumimos modo no interactivo
+      // Obtener el modo de interacción configurado
+      const configuredMode = i18n.getCurrentInteractionMode();
+      
+      // Determinar si debemos usar el modo no interactivo basado en la configuración y los parámetros
       const hasCommandLineParams = Boolean(messageArgument) || 
                                   options.type !== "feat" || 
                                   Boolean(options.scope) || 
                                   options.breaking || 
                                   Boolean(options.description) || 
                                   Boolean(options.fullMessage);
+
+      // Determinar el modo de interacción final
+      let useNonInteractive = false;
       
-      // Usar modo no interactivo si se especifica explícitamente o si hay parámetros por línea de comandos
-      if (options.nonInteractive || hasCommandLineParams || options.fullMessage) {
+      switch (configuredMode) {
+        case 'non-interactive':
+          useNonInteractive = true;
+          break;
+        case 'interactive':
+          useNonInteractive = options.nonInteractive;
+          break;
+        case 'hybrid':
+          useNonInteractive = options.nonInteractive || hasCommandLineParams;
+          break;
+      }
+
+      // Si estamos en modo no interactivo o tenemos un mensaje completo
+      if (useNonInteractive || options.fullMessage) {
         // Non-interactive mode
         // Validate commit type
         const type = options.type.toLowerCase();

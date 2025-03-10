@@ -13,6 +13,7 @@ export type Language = 'en' | 'es' | 'pt';
 // Interface for configuration
 interface Config {
   language: Language;
+  interaction: 'interactive' | 'non-interactive' | 'hybrid';
 }
 
 // Path to configuration file
@@ -21,6 +22,7 @@ const CONFIG_FILE = path.join(CONFIG_DIR, 'config.json');
 
 // Default language
 const DEFAULT_LANGUAGE: Language = 'en';
+const DEFAULT_INTERACTION = 'interactive';
 
 // Load translations
 const translations: Record<Language, any> = {
@@ -41,7 +43,7 @@ function getConfig(): Config {
   }
   
   // Default configuration if file doesn't exist
-  return { language: DEFAULT_LANGUAGE };
+  return { language: DEFAULT_LANGUAGE, interaction: DEFAULT_INTERACTION };
 }
 
 // Function to save configuration
@@ -135,12 +137,26 @@ export function getTranslationObject(key: string): any {
   return translation;
 }
 
+// Function to change interaction mode
+export function setInteractionMode(mode: 'interactive' | 'non-interactive' | 'hybrid'): boolean {
+  const config = getConfig();
+  config.interaction = mode;
+  return saveConfig(config);
+}
+
+// Function to get current interaction mode
+export function getCurrentInteractionMode(): 'interactive' | 'non-interactive' | 'hybrid' {
+  return getConfig().interaction;
+}
+
 // Export translations object for direct access
 export const i18n = {
   t,
   getTranslationObject,
   getCurrentLanguage,
   setLanguage,
+  getCurrentInteractionMode,
+  setInteractionMode,
   saveConfig
 };
 

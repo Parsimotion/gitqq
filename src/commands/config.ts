@@ -51,4 +51,48 @@ configCommand
   .action(() => {
     const currentLanguage = i18n.getCurrentLanguage();
     console.log(`${i18n.t("config.currentLanguage").replace("{0}", currentLanguage)}`);
+  });
+
+// Subcommand to change the interaction mode
+configCommand
+  .command("interaction")
+  .description("Change the interaction mode of the CLI")
+  .action(async () => {
+    const currentMode = i18n.getCurrentInteractionMode();
+    
+    // Interaction mode options
+    const modeChoices = [
+      { 
+        name: i18n.t("config.interactionModes.interactive"), 
+        value: "interactive" 
+      },
+      { 
+        name: i18n.t("config.interactionModes.nonInteractive"), 
+        value: "non-interactive" 
+      },
+      { 
+        name: i18n.t("config.interactionModes.hybrid"), 
+        value: "hybrid" 
+      }
+    ];
+    
+    // Ask the user which mode they want to use
+    const answers = await inquirer.prompt([
+      {
+        type: "list",
+        name: "mode",
+        message: i18n.t("config.selectInteractionMode"),
+        choices: modeChoices,
+        default: currentMode
+      }
+    ]);
+    
+    // Save the configuration
+    const success = i18n.setInteractionMode(answers.mode);
+    
+    if (success) {
+      console.log(i18n.t("config.saved"));
+    } else {
+      console.error(i18n.t("config.error"));
+    }
   }); 

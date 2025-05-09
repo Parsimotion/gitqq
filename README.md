@@ -5,15 +5,7 @@ A command-line tool to facilitate the use of Git with natural language and devel
 ## 🚀 Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/your-username/gitqq.git
-cd gitqq
-
-# Install dependencies
-npm install
-
-# Install globally (optional)
-npm install -g .
+npm install -g @producteca/gitqq
 ```
 
 ## 🌍 Multilingual Support
